@@ -19,3 +19,16 @@ Route::get('/help','StaticPagesController@help')->name('help');
 Route::get('/about','StaticPagesController@about')->name('about');
 //注册
 Route::get('/signup', 'UsersController@create')->name('signup');
+//用户的增删改查
+Route::resource('users', 'UsersController');
+
+
+
+
+
+
+
+
+
+
+
