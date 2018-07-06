@@ -27,10 +27,10 @@ class UsersController extends Controller
     }
 
     //展示用户信息
-    public function show(User $user)
+    /*public function show(User $user)
     {
         return view('users.show',compact('user'));
-    }
+    }*/
 
     //创建用户
     public function store(Request $request)
@@ -121,5 +121,14 @@ class UsersController extends Controller
         $user->delete();
         session()->flash('success', '成功删除用户！');
         return back();
+    }
+
+    //展示微博
+    public function show(User $user)
+    {
+        $statuses = $user->statuses()
+            ->orderBy('created_at', 'desc')
+            ->paginate(20);
+        return view('users.show', compact('user', 'statuses'));
     }
 }
